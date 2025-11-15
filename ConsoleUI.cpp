@@ -50,7 +50,8 @@ void ConsoleUI::run(ContactBook& contactBook){
                 contactBook.saveContacts();
                 break;
             case 6:
-                cout<<"Programm finished!"<<endl;
+                contactBook.saveContacts();
+                cout<<"\nProgramm finished!"<<endl;
                 return;
         }
 
