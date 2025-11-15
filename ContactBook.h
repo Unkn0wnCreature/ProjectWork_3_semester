@@ -1,7 +1,6 @@
 #pragma once
 #include "Contact.h"
 #include "FileStorage.h"
-#include <vector>
 #include <string>
 using namespace std;
 
@@ -43,5 +42,5 @@ class ContactBook {
     void sortContacts();
 
     void saveContacts();
-    void loadContacts(ContactBook& contactBook);
+    void loadContacts();
 };

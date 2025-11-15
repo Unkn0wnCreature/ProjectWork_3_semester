@@ -26,26 +26,26 @@ void ConsoleUI::run(ContactBook& contactBook){
     while (option > 0 && option < 7){
         switch (option){
             case 1:
-                contactBook.loadContacts(contactBook);
+                contactBook.loadContacts();
                 contactBook.showContacts();
                 break;
             case 2:
-                contactBook.loadContacts(contactBook);
+                contactBook.loadContacts();
                 contactBook.addContact(contactBook.createContactByInput());
                 contactBook.saveContacts();
                 break;
             case 3:
-                contactBook.loadContacts(contactBook);
+                contactBook.loadContacts();
                 contactBook.deleteContact();
                 contactBook.saveContacts();
                 break;
             case 4:
-                contactBook.loadContacts(contactBook);
+                contactBook.loadContacts();
                 contactBook.updateContact();
                 contactBook.saveContacts();
                 break;
             case 5:
-                contactBook.loadContacts(contactBook);
+                contactBook.loadContacts();
                 contactBook.sortContacts();
                 contactBook.saveContacts();
                 break;

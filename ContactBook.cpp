@@ -341,6 +341,6 @@ void ContactBook::saveContacts(){
     if (!fileStorage.saveToFile(contactBook)){cout<<"\nError: can't open file!\n"<<endl;}
 }
 
-void ContactBook::loadContacts(ContactBook& contact_book){
+void ContactBook::loadContacts(){
     contactBook = fileStorage.loadFromFile(contactBook);
 }

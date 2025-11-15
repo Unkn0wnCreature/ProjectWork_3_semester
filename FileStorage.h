@@ -1,6 +1,5 @@
 #pragma once
 #include "Contact.h"
-#include <vector>
 #include <string>
 using namespace std;
 
