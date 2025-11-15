@@ -14,8 +14,6 @@ ContactBook::ContactBook(const ContactBook& contact_book){
 
 ContactBook::~ContactBook(){};
 
-size_t ContactBook::get_size() const {return contactBook.size();}
-
 void ContactBook::categoryInput(string category, string& inputString, string status){
     cout<<"Enter "<< category <<" ("<< status <<"):"<<endl;
     getline(cin, inputString);
@@ -29,7 +27,6 @@ Contact ContactBook::createContactByInput(){
     while (firstName.empty()){categoryInput("first name", firstName);}
     while (!contact.isValidName(firstName)){categoryInput("first name", firstName);}
     if (!contact.set_firstName(firstName)){cout<<"Ошибка присвоения имени."<<endl;}
-
 
     categoryInput("second name", secondName);
     while (secondName.empty()){categoryInput("second name", secondName);}
@@ -46,7 +43,7 @@ Contact ContactBook::createContactByInput(){
 
     categoryInput("address", address, "optional");
     while (!contact.isValidAddress(address)){categoryInput("address", address, "optional");}
-    if (!contact.set_address(address)){cout<<"Ошибка присвоения даты адреса."<<endl;}
+    if (!contact.set_address(address)){cout<<"Ошибка присвоения адреса."<<endl;}
 
     categoryInput("email", email);
     while (email.empty()){categoryInput("email", email);}
@@ -303,7 +300,7 @@ void ContactBook::sortContacts(){
         contactBook.sort(compareBySecondName);
         break;
     case 4:
-        contactBook.sort(compareBySecondName);
+        contactBook.sort(compareBySecondNameDecr);
         break;
     case 5:
         contactBook.sort(compareByLastName);
