@@ -59,4 +59,8 @@ void ConsoleUI::run(ContactBook& contactBook){
         cin>>option;
         cin.ignore();
     }
+
+    contactBook.saveContacts();
+    cout<<"\nProgramm finished!"<<endl;
+    return;
 }
