@@ -15,8 +15,6 @@ class ContactBook {
     ContactBook(const ContactBook& contact_book);
     ~ContactBook();
 
-    size_t get_size() const;
-
     void categoryInput(string category, string& inputString, string status = "compulsory");
     Contact createContactByInput();
     void showContacts();
