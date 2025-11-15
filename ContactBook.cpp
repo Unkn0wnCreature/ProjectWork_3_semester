@@ -144,13 +144,13 @@ void ContactBook::deleteContact(){
             for (auto it = contactBook.begin(); it != contactBook.end(); ) {
                 if (*it == contact_to_delete) {
                     it = contactBook.erase(it);
-                    cout << "Contact deleted." << endl;
                     break;
                 } else {
                     ++it;
                 }
             }
         }
+        cout<<"\nContacts deleted!"<<endl;
     }else {
         for (Contact& contact_to_delete : list_to_delete) {
             contact_to_delete.show();
