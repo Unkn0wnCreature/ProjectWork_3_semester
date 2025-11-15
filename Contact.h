@@ -40,7 +40,6 @@ class Contact {
     bool isValidDate(const string& date) const;
     bool isValidAddress(const string& address) const;
 
-    string normalizePhoneNumber(const string& PhoneNumber);
     string trim(const string& string) const;
     bool addPhoneNumber(const string& PhoneNumber);
 

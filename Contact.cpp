@@ -151,24 +151,6 @@ bool Contact::isValidAddress(const string& address) const{
     return regex_match(trim(address), pattern);
 }
 
-string Contact::normalizePhoneNumber(const string& phoneNumber){
-    string result;
-    for (char c : phoneNumber) {
-        if (std::isdigit(c) || c == '+') {
-            result += c;
-        }
-    }
-    
-    if (result.length() == 11 && result[0] == '8') {
-        result[0] = '7';
-        result = "+" + result;
-    } else if (result.length() == 10) {
-        result = "+7" + result;
-    }
-    
-    return result;
-}
-
 string Contact::trim(const string& string) const{
     size_t start = string.find_first_not_of(" \t\n\r");
     size_t end = string.find_last_not_of(" \t\n\r");
