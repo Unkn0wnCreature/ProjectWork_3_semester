@@ -1,0 +1,10 @@
+{
+    "files.associations": {
+        "xstring": "cpp",
+        "list": "cpp",
+        "regex": "cpp",
+        "format": "cpp",
+        "iostream": "cpp",
+        "string": "cpp"
+    }
+}
