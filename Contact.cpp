@@ -1,5 +1,6 @@
 #include "Contact.h"
 #include <regex>
+#include <iostream>
 #include <ctime>
 using namespace std;
 
@@ -18,6 +19,7 @@ Contact::Contact(const Contact& c){
     secondName = c.secondName;
     lastName = c.lastName;
     address = c.address;
+    birthDate = c.birthDate;
     email = c.email;
     list_of_phone_numbers = c.list_of_phone_numbers;
 }
