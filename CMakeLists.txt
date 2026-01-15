@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.16)
 
-project(ContactBook_Qt VERSION 0.1 LANGUAGES CXX)
+project(ContactBook__Qt VERSION 0.1 LANGUAGES CXX)
 
 set(CMAKE_AUTOUIC ON)
 set(CMAKE_AUTOMOC ON)
@@ -20,45 +20,40 @@ set(PROJECT_SOURCES
 )
 
 if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
-    qt_add_executable(ContactBook_Qt
+    qt_add_executable(ContactBook__Qt
         MANUAL_FINALIZATION
         ${PROJECT_SOURCES}
-        Contact.cpp ContactBook.cpp FileStorage.cpp
-        Contact.h ContactBook.h FileStorage.h
+        Contact.h ContactBook.h ContactWindow.h FileStorage.h mainwindow.h SearchWindow.h
+        Contact.cpp ContactBook.cpp ContactWindow.cpp FileStorage.cpp main.cpp mainwindow.cpp SearchWindow.cpp
         build/Desktop_Qt_shared_MinGW_w64_MINGW64_MSYS2-Debug/contacts.txt
-        ContactWindow.h
-        ContactWindow.cpp
-        SearchWindow.h
-        SearchWindow.cpp
-
     )
 # Define target properties for Android with Qt 6 as:
-#    set_property(TARGET ContactBook_Qt APPEND PROPERTY QT_ANDROID_PACKAGE_SOURCE_DIR
+#    set_property(TARGET ContactBook__Qt APPEND PROPERTY QT_ANDROID_PACKAGE_SOURCE_DIR
 #                 ${CMAKE_CURRENT_SOURCE_DIR}/android)
 # For more information, see https://doc.qt.io/qt-6/qt-add-executable.html#target-creation
 else()
     if(ANDROID)
-        add_library(ContactBook_Qt SHARED
+        add_library(ContactBook__Qt SHARED
             ${PROJECT_SOURCES}
         )
 # Define properties for Android with Qt 5 after find_package() calls as:
 #    set(ANDROID_PACKAGE_SOURCE_DIR "${CMAKE_CURRENT_SOURCE_DIR}/android")
     else()
-        add_executable(ContactBook_Qt
+        add_executable(ContactBook__Qt
             ${PROJECT_SOURCES}
         )
     endif()
 endif()
 
-target_link_libraries(ContactBook_Qt PRIVATE Qt${QT_VERSION_MAJOR}::Widgets)
+target_link_libraries(ContactBook__Qt PRIVATE Qt${QT_VERSION_MAJOR}::Widgets)
 
 # Qt for iOS sets MACOSX_BUNDLE_GUI_IDENTIFIER automatically since Qt 6.1.
 # If you are developing for iOS or macOS you should consider setting an
 # explicit, fixed bundle identifier manually though.
 if(${QT_VERSION} VERSION_LESS 6.1.0)
-  set(BUNDLE_ID_OPTION MACOSX_BUNDLE_GUI_IDENTIFIER com.example.ContactBook_Qt)
+  set(BUNDLE_ID_OPTION MACOSX_BUNDLE_GUI_IDENTIFIER com.example.ContactBook__Qt)
 endif()
-set_target_properties(ContactBook_Qt PROPERTIES
+set_target_properties(ContactBook__Qt PROPERTIES
     ${BUNDLE_ID_OPTION}
     MACOSX_BUNDLE_BUNDLE_VERSION ${PROJECT_VERSION}
     MACOSX_BUNDLE_SHORT_VERSION_STRING ${PROJECT_VERSION_MAJOR}.${PROJECT_VERSION_MINOR}
@@ -67,12 +62,12 @@ set_target_properties(ContactBook_Qt PROPERTIES
 )
 
 include(GNUInstallDirs)
-install(TARGETS ContactBook_Qt
+install(TARGETS ContactBook__Qt
     BUNDLE DESTINATION .
     LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}
     RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR}
 )
 
 if(QT_VERSION_MAJOR EQUAL 6)
-    qt_finalize_executable(ContactBook_Qt)
+    qt_finalize_executable(ContactBook__Qt)
 endif()

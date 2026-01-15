@@ -43,8 +43,6 @@ private slots:
     void searchContacts();
     void clearSearch();
 
-    void onHeaderClicked(int logicalIndex);
-
 private:
     Ui::MainWindow *ui;
     ContactWindow *contact;

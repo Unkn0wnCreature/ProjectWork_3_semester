@@ -50,11 +50,6 @@ void MainWindow::setNonEditableTable()
     contactBook = new ContactBook();
     searchWindow = new SearchWindow();
 
-    ui->contactTable->setSortingEnabled(true);
-
-    connect(ui->contactTable->horizontalHeader(), &QHeaderView::sectionClicked,
-            this, &MainWindow::onHeaderClicked);
-
     ui->contactTable->setEditTriggers(QAbstractItemView::NoEditTriggers);
     ui->contactTable->setSelectionBehavior(QAbstractItemView::SelectRows);
     ui->contactTable->setDragEnabled(false);
@@ -74,15 +69,6 @@ void MainWindow::setNonEditableTable()
         "Email",
         "Телефоны"
     });
-
-/*
-    ui->searchButton->setMenu(new QMenu(ui->searchButton));
-    QAction *searchAction = ui->searchButton->menu()->addAction("Выполнить поиск");
-    QAction *clearAction = ui->searchButton->menu()->addAction("Сбросить поиск");
-
-    connect(searchAction, &QAction::triggered, this, &MainWindow::searchContacts);
-    connect(clearAction, &QAction::triggered, this, &MainWindow::clearSearch);
-*/
 }
 
 void MainWindow::addContact(){
@@ -233,78 +219,4 @@ void MainWindow::clearSearch(){
     searchWindow->clear();
 
     showContacts();
-}
-
-void MainWindow::onHeaderClicked(int logicalIndex)
-{
-    static QMap<int, Qt::SortOrder> sortOrders;
-
-    Qt::SortOrder order = sortOrders.value(logicalIndex, Qt::AscendingOrder);
-    order = (order == Qt::AscendingOrder) ? Qt::DescendingOrder : Qt::AscendingOrder;
-    sortOrders[logicalIndex] = order;
-
-    QList<Contact> contacts = contactBook->getContacts();
-
-    std::function<bool(const Contact&, const Contact&)> compareFunc;
-
-    switch (logicalIndex) {
-    case 0:
-        compareFunc = [order](const Contact &a, const Contact &b) {
-            return order == Qt::AscendingOrder ?
-                       a.get_firstName().toLower() < b.get_firstName().toLower() :
-                       a.get_firstName().toLower() > b.get_firstName().toLower();
-        };
-        break;
-    case 1:
-        compareFunc = [order](const Contact &a, const Contact &b) {
-            return order == Qt::AscendingOrder ?
-                       a.get_secondName().toLower() < b.get_secondName().toLower() :
-                       a.get_secondName().toLower() > b.get_secondName().toLower();
-        };
-        break;
-    case 2:
-        compareFunc = [order](const Contact &a, const Contact &b) {
-            QString ln1 = a.get_lastName().isEmpty() ? "zzzzzzzzzz" : a.get_lastName().toLower();
-            QString ln2 = b.get_lastName().isEmpty() ? "zzzzzzzzzz" : b.get_lastName().toLower();
-            return order == Qt::AscendingOrder ? ln1 < ln2 : ln1 > ln2;
-        };
-        break;
-    case 3:
-        compareFunc = [order](const Contact &a, const Contact &b) {
-            QString d1 = a.get_birthDate().isEmpty() ? "31-12-9999" : a.get_birthDate();
-            QString d2 = b.get_birthDate().isEmpty() ? "31-12-9999" : b.get_birthDate();
-            return order == Qt::AscendingOrder ? d1 < d2 : d1 > d2;
-        };
-        break;
-    case 4:
-        compareFunc = [order](const Contact &a, const Contact &b) {
-            QString a1 = a.get_address().isEmpty() ? "zzzzzzzzzz" : a.get_address().toLower();
-            QString a2 = b.get_address().isEmpty() ? "zzzzzzzzzz" : b.get_address().toLower();
-            return order == Qt::AscendingOrder ? a1 < a2 : a1 > a2;
-        };
-        break;
-    case 5:
-        compareFunc = [order](const Contact &a, const Contact &b) {
-            return order == Qt::AscendingOrder ?
-                       a.get_email().toLower() < b.get_email().toLower() :
-                       a.get_email().toLower() > b.get_email().toLower();
-        };
-        break;
-    case 6:
-        compareFunc = [order](const Contact &a, const Contact &b) {
-            QString p1 = a.get_list_of_phones().isEmpty() ? "" : a.get_list_of_phones().first();
-            QString p2 = b.get_list_of_phones().isEmpty() ? "" : b.get_list_of_phones().first();
-            return order == Qt::AscendingOrder ? p1 < p2 : p1 > p2;
-        };
-        break;
-    default:
-        return;
-    }
-
-    std::sort(contacts.begin(), contacts.end(), compareFunc);
-    contactBook->setContacts(contacts);
-    contactBook->saveContacts();
-    showContacts();
-
-    ui->contactTable->horizontalHeader()->setSortIndicator(logicalIndex, order);
 }
