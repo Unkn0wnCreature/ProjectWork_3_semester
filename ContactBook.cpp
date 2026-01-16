@@ -26,6 +26,13 @@ QList<Contact> ContactBook::searchContact(QList<QString> criteriaList){
 
     for (Contact& contact : contactBook){
         bool matches = true;
+
+        QString phoneCriteria = criteriaList[6];
+        if (!phoneCriteria.isEmpty()) {
+            Contact tempContact;
+            phoneCriteria = tempContact.normalizePhone(phoneCriteria);
+        }
+
         if (!criteriaList[0].isEmpty() && !contact.findByFirstName(criteriaList[0])) {
             matches = false;
         }

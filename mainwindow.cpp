@@ -235,7 +235,8 @@ void MainWindow::searchContacts(){
         QList<QString> criteriaList = searchWindow->getCriteria();
         QList<Contact> result = contactBook->searchContact(criteriaList);
 
-        ui->contactTable->setRowCount(result.size());
+
+        ui->contactTable->setRowCount(0);
         for (int i = 0; i < result.size(); ++i){
             const Contact& con = result[i];
             ui->contactTable->insertRow(i);
@@ -252,7 +253,6 @@ void MainWindow::searchContacts(){
 
 void MainWindow::clearSearch(){
     searchWindow->clear();
-
     showContacts();
 }
 

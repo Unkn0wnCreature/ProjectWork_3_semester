@@ -56,11 +56,11 @@ void SearchWindow::clear(){
 }
 
 QList<QString> SearchWindow::getCriteria(){
-    return {firstNameEdit->text(),
-    secondNameEdit->text(),
-    lastNameEdit->text(),
-    birthEdit->text(),
-    addressEdit->text(),
-    emailEdit->text(),
-    phoneEdit->text()};
+    return {firstNameEdit->text().trimmed(),
+    secondNameEdit->text().trimmed(),
+    lastNameEdit->text().trimmed(),
+    birthEdit->text().trimmed(),
+    addressEdit->text().trimmed(),
+    emailEdit->text().trimmed(),
+    phoneEdit->text().trimmed()};
 }
