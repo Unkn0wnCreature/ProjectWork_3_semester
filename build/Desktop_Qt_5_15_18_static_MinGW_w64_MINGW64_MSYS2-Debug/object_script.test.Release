@@ -1,0 +1,11 @@
+release/Contact.o
+release/ContactBook.o
+release/ContactWindow.o
+release/DBStorage.o
+release/FileStorage.o
+release/SearchWindow.o
+release/main.o
+release/mainwindow.o
+release/test_plugin_import.o
+release/moc_DBStorage.o
+release/moc_mainwindow.o
